@@ -1,8 +1,8 @@
 """
-Lorenz System - GA Optimization of Predictor–Corrector Coefficients
+Lorenz System - GA Optimization of Predictor-Corrector Coefficients
 -------------------------------------------------------------------
 This script evolves both the step size and the predictor/corrector
-coefficients of the two-step Adams–Bashforth–Moulton method for the
+coefficients of the two-step Adams-Bashforth-Moulton method for the
 Lorenz system. The Genetic Algorithm minimizes the mean squared error
 between the GA-tuned ABM2 trajectory and the high-accuracy RK45 baseline.
 """
@@ -147,17 +147,18 @@ np.savez(
     params=best_params,
 )
 
-# Plot convergence
+
+# --- GA Convergence Plot ---
 plt.figure(figsize=(7, 4))
 plt.plot(best_history, color="blue")
 plt.yscale("log")
 plt.xlabel("Generation")
-plt.ylabel("MSE (log scale)")
+plt.ylabel("Internal MSE (log scale)")
 plt.title("GA Convergence of Predictor–Corrector Parameters")
 plt.tight_layout()
-plt.show()
+plt.show(block=True)
 
-# Plot optimized trajectory
+# --- 3D Trajectory ---
 fig1 = plt.figure(figsize=(7, 6))
 ax1 = fig1.add_subplot(111, projection="3d")
 ax1.plot(y_opt[:, 0], y_opt[:, 1], y_opt[:, 2], lw=0.6, color="green")
@@ -166,4 +167,17 @@ ax1.set_ylabel("y")
 ax1.set_zlabel("z")
 ax1.set_title("Lorenz Attractor (GA-Optimized ABM2 Coefficients)")
 plt.tight_layout()
-plt.show()
+plt.show(block=True)
+
+# --- Time-Series ---
+fig2, ax2 = plt.subplots(figsize=(9, 5))
+ax2.plot(t_opt, y_opt[:, 0], label="x(t)")
+ax2.plot(t_opt, y_opt[:, 1], label="y(t)")
+ax2.plot(t_opt, y_opt[:, 2], label="z(t)")
+ax2.set_xlabel("t")
+ax2.set_ylabel("$u(t)$")
+ax2.legend()
+ax2.set_title("Lorenz System State Evolution (GA-Optimized ABM2 Coefficients)")
+plt.tight_layout()
+plt.grid(True)
+plt.show(block=True)
