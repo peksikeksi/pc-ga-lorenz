@@ -147,15 +147,18 @@ np.savez(
     params=best_params,
 )
 
-
 # --- GA Convergence Plot ---
 plt.figure(figsize=(7, 4))
-plt.plot(best_history, color="blue")
+plt.plot(
+    best_history,
+)
 plt.yscale("log")
-plt.xlabel("Generation")
-plt.ylabel("Internal MSE (log scale)")
-plt.title("GA Convergence of Predictor–Corrector Parameters")
+plt.xlabel("Generacija")
+plt.ylabel("MSE (log scale)")
+# plt.title("GA Convergence of Predictor-Corrector Parameters")
 plt.tight_layout()
+plt.grid(True)
+plt.savefig("results/images/convergence_multi_ga_optimized.png", dpi=220)
 plt.show(block=True)
 
 # --- 3D Trajectory ---
@@ -165,8 +168,9 @@ ax1.plot(y_opt[:, 0], y_opt[:, 1], y_opt[:, 2], lw=0.6, color="green")
 ax1.set_xlabel("x")
 ax1.set_ylabel("y")
 ax1.set_zlabel("z")
-ax1.set_title("Lorenz Attractor (GA-Optimized ABM2 Coefficients)")
+# ax1.set_title("Lorenz Attractor (GA-Optimized ABM2 Coefficients)")
 plt.tight_layout()
+plt.savefig("results/images/lorenz_multi_ga_optimized.png", dpi=220)
 plt.show(block=True)
 
 # --- Time-Series ---
@@ -177,7 +181,8 @@ ax2.plot(t_opt, y_opt[:, 2], label="z(t)")
 ax2.set_xlabel("t")
 ax2.set_ylabel("$u(t)$")
 ax2.legend()
-ax2.set_title("Lorenz System State Evolution (GA-Optimized ABM2 Coefficients)")
+# ax2.set_title("Lorenz System State Evolution (GA-Optimized ABM2 Coefficients)")
 plt.tight_layout()
 plt.grid(True)
+plt.savefig("results/images/lorenz_multi_ga_optimized_timeseries.png", dpi=220)
 plt.show(block=True)
