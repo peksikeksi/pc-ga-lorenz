@@ -45,7 +45,10 @@ np.savez(
     y=solution.y[1],
     z=solution.y[2],
 )
-print("✅ Baseline solution saved to results/lorenz_baseline.npz")
+print("Baseline solution saved to results/lorenz_baseline.npz")
+
+# load if necessary
+# base = np.load("results/lorenz_baseline.npz")
 
 # 3d trajectory
 fig1 = plt.figure(figsize=(8, 6))
@@ -56,6 +59,7 @@ ax1.set_ylabel("y")
 ax1.set_zlabel("z")
 # ax1.set_title("Lorenz Attractor (Baseline RK45)")
 plt.tight_layout()
+plt.savefig("results/images/lorenz_baseline_rk45.png", dpi=300)
 plt.show()
 
 # time series
@@ -69,4 +73,5 @@ ax2.legend()
 # ax2.set_title("Lorenz System State Evolution")
 plt.tight_layout()
 plt.grid(True)
+plt.savefig("results/images/lorenz_baseline_rk45_timeseries.png", dpi=220)
 plt.show()

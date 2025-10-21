@@ -58,11 +58,11 @@ y0 = np.array([1.0, 1.0, 1.0])
 
 print("Computing Lorenz system using ABM2 with Euler initialization...")
 t, y = abm2_euler(lorenz, t0, t_end, y0, h)
-print("✅ Integration complete.")
+print("Integration complete.")
 
 os.makedirs("results", exist_ok=True)
 np.savez("results/lorenz_pc_abm2_euler.npz", t=t, x=y[:, 0], y=y[:, 1], z=y[:, 2])
-print("✅ Results saved to results/lorenz_pc_abm2_euler.npz")
+print("Results saved to results/lorenz_pc_abm2_euler.npz")
 
 # Visualization
 fig1 = plt.figure(figsize=(7, 6))
