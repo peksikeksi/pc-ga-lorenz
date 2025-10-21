@@ -68,7 +68,7 @@ def fitness(h):
 
 # GA parameters
 pop_size = 12
-generations = 25
+generations = 20
 mutation_rate = 0.25
 h_bounds = (0.0005, 0.015)
 
@@ -122,10 +122,12 @@ np.savez(
 plt.figure(figsize=(7, 4))
 plt.plot(best_history, color="teal")
 plt.yscale("log")
-plt.xlabel("Generation")
-plt.ylabel("Internal MSE (log scale)")
-plt.title("GA Convergence for Step Size Optimization")
+plt.xlabel("Generacija")
+plt.ylabel("MSE (log)")
+# plt.title("GA Convergence for Step Size Optimization")
 plt.tight_layout()
+plt.grid(True)
+plt.savefig("results/images/convergence_ga_optimized.png", dpi=220)
 plt.show(block=True)
 
 # --- 3D Trajectory ---
@@ -135,8 +137,9 @@ ax1.plot(y_opt[:, 0], y_opt[:, 1], y_opt[:, 2], lw=0.6, color="forestgreen")
 ax1.set_xlabel("x")
 ax1.set_ylabel("y")
 ax1.set_zlabel("z")
-ax1.set_title(f"Lorenz Attractor (GA-Optimized ABM2, h={best_h:.4f})")
+# ax1.set_title(f"Lorenz Attractor (GA-Optimized ABM2, h={best_h:.4f})")
 plt.tight_layout()
+plt.savefig("results/images/lorenz_ga_optimized.png", dpi=220)
 plt.show(block=True)
 
 # --- Time Series ---
@@ -147,7 +150,8 @@ ax2.plot(t_opt, y_opt[:, 2], label="z(t)")
 ax2.set_xlabel("t")
 ax2.set_ylabel("$u(t)$")
 ax2.legend()
-ax2.set_title("Lorenz System State Evolution (GA-Optimized ABM2)")
+# ax2.set_title("Lorenz System State Evolution (GA-Optimized ABM2)")
 plt.tight_layout()
 plt.grid(True)
+plt.savefig("results/images/lorenz_ga_optimized_timeseries.png", dpi=220)
 plt.show(block=True)
