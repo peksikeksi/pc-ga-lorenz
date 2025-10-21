@@ -86,6 +86,34 @@ plt.grid(True)
 plt.tight_layout()
 plt.show(block=True)
 
+# Time-series comparison for y(t)
+plt.figure(figsize=(9, 5))
+plt.plot(t_ref, x_ref, label="RK45 baseline", color="black", lw=1.2)
+colors = ["orange", "green", "blue"]
+for (label, data), c in zip(methods.items(), colors):
+    plt.plot(data["t"], data["y"], label=label, color=c, alpha=0.85)
+plt.xlabel("t")
+plt.ylabel("y(t)")
+plt.legend()
+plt.title("Lorenz System: Comparison of y(t) Across Methods")
+plt.grid(True)
+plt.tight_layout()
+plt.show(block=True)
+
+# Time-series comparison for z(t)
+plt.figure(figsize=(9, 5))
+plt.plot(t_ref, x_ref, label="RK45 baseline", color="black", lw=1.2)
+colors = ["orange", "green", "blue"]
+for (label, data), c in zip(methods.items(), colors):
+    plt.plot(data["t"], data["z"], label=label, color=c, alpha=0.85)
+plt.xlabel("t")
+plt.ylabel("z(t)")
+plt.legend()
+plt.title("Lorenz System: Comparison of z(t) Across Methods")
+plt.grid(True)
+plt.tight_layout()
+plt.show(block=True)
+
 # Error evolution (|x - x_ref|)
 plt.figure(figsize=(9, 5))
 for (label, vals), c in zip(metrics.items(), colors):
