@@ -114,6 +114,48 @@ plt.grid(True)
 plt.tight_layout()
 plt.show(block=True)
 
+###############################################################
+# Time-series comparison for x(t), y(t), z(t) in a single figure
+################################################################
+fig, axes = plt.subplots(3, 1, figsize=(9, 10))
+colors = ["orange", "green", "blue"]
+
+# x(t) subplot
+axes[0].plot(t_ref, x_ref, label="RK45 baseline", color="black", lw=1.2)
+for (label, data), c in zip(methods.items(), colors):
+    axes[0].plot(data["t"], data["x"], label=label, color=c, alpha=0.85)
+axes[0].set_xlabel("t")
+axes[0].set_ylabel("x(t)")
+axes[0].legend()
+# axes[0].set_title("Lorenz System: Comparison of x(t) Across Methods")
+axes[0].grid(True)
+
+# y(t) subplot
+axes[1].plot(t_ref, y_ref, label="RK45 baseline", color="black", lw=1.2)
+for (label, data), c in zip(methods.items(), colors):
+    axes[1].plot(data["t"], data["y"], label=label, color=c, alpha=0.85)
+axes[1].set_xlabel("t")
+axes[1].set_ylabel("y(t)")
+axes[1].legend()
+# axes[1].set_title("Lorenz System: Comparison of y(t) Across Methods")
+axes[1].grid(True)
+
+# z(t) subplot
+axes[2].plot(t_ref, z_ref, label="RK45 baseline", color="black", lw=1.2)
+for (label, data), c in zip(methods.items(), colors):
+    axes[2].plot(data["t"], data["z"], label=label, color=c, alpha=0.85)
+axes[2].set_xlabel("t")
+axes[2].set_ylabel("z(t)")
+axes[2].legend()
+# axes[2].set_title("Lorenz System: Comparison of z(t) Across Methods")
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.savefig("results/images/lorenz_time_series_comparison.png", dpi=220)
+plt.show(block=True)
+
+
+#############################################################
 # Error evolution (|x - x_ref|)
 plt.figure(figsize=(9, 5))
 for (label, vals), c in zip(metrics.items(), colors):
